@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -276,6 +277,14 @@ namespace Base
         {
             list.Clear();
             list.AddRange(items);
+        }
+
+        public static void AddRange<T>(this ObservableCollection<T> list, IEnumerable<T> items)
+        {
+            foreach (var item in items)
+            {
+                list.Add(item);
+            }
         }
 
         public static IEnumerable<MatchRange> Match<T>(this IEnumerable<T> a, IEnumerable<T> b)

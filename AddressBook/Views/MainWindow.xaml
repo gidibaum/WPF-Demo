@@ -2,8 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wpf="clr-namespace:Base.WPF;assembly=Base.WPF"
+        xmlns:views="clr-namespace:AddressBook.Views"
         ResizeMode="CanResizeWithGrip"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="550" Width="525">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -26,6 +27,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
@@ -63,9 +66,14 @@
                 Command="{Binding ConsoleCommand}"/>
 
             <MenuItem 
-                Header="{StaticResource calcFont}" FontSize="18"
-                ToolTip="Calculate" 
-                Command="{Binding CalcCommand}"/>
+                Header="{StaticResource loadFont}" FontSize="18"
+                ToolTip="Load" 
+                Command="{Binding LoadCommand}"/>
+
+            <MenuItem 
+                Header="{StaticResource saveFont}" FontSize="18"
+                ToolTip="Save" 
+                Command="{Binding SaveCommand}"/>
 
             <MenuItem 
                 Header="{StaticResource exitFont}" FontSize="22"
@@ -74,13 +82,17 @@
 
         </Menu>
 
-        <Button 
-            Content="Calc" 
-            Command="{Binding CalcCommand}" Margin="55,53,0,0" 
-            Grid.Row="2" HorizontalAlignment="Left" 
-            Width="75" Height="23" VerticalAlignment="Top" />
+        <!--<DataGrid Grid.Row="2" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson, Mode=TwoWay}"/>-->
 
-        <StatusBar Grid.Row="3">
+        <views:AddressGridControl Grid.Row="2" />
+        
+        
+        <GridSplitter Grid.Row="3" HorizontalAlignment="Stretch"/>
+
+        <views:AddressControl Grid.Row="4" DataContext="{Binding SelectedPerson.Address}" IsReadOnly="True"/>
+        
+        
+        <StatusBar Grid.Row="5">
             <TextBlock Text="Ver: " Margin="10,0,0,0" VerticalAlignment="Center"/>
             <TextBlock Text="{Binding Config.Version}" VerticalAlignment="Center"/>
         </StatusBar>

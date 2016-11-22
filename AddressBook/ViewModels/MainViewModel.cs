@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using Base;
 using Base.WPF;
 using System.Windows;
+using System.Xml.Linq;
 using Microsoft.Win32;
 using AddressBook.Views;
 using AddressBook.Models;
+using AddressBook.Services;
 
 
 namespace AddressBook.ViewModels
@@ -16,6 +21,24 @@ namespace AddressBook.ViewModels
         public Command CalcCommand { get; }
         public Command AboutCommand { get; }
         public Command OpenFileCommand { get; }
+        public Command LoadCommand { get; }
+        public Command SaveCommand { get; }
+
+
+        public ObservableCollection<Person> People { get; }
+
+
+        #region Property: SelectedPerson
+
+        Person _SelectedPerson;
+
+        public Person SelectedPerson
+        {
+            get { return _SelectedPerson; }
+            set { SetProperty(ref _SelectedPerson, value); }
+        }
+
+        #endregion
 
 
         public Configurator Config { get; protected set; }
@@ -31,6 +54,10 @@ namespace AddressBook.ViewModels
 
             AboutCommand = new Command(ShowAboutDialog);
 
+            LoadCommand = new Command(Load);
+
+            SaveCommand = new Command(Save);
+
             CalcCommand = new Command(Calculate);
 
             OpenFileCommand = new Command
@@ -39,6 +66,7 @@ namespace AddressBook.ViewModels
                 ExecuteFunction = p => OpenFile()
             };
 
+            People = new ObservableCollection<Person>();
 
             Config = new Configurator();
 
@@ -49,6 +77,22 @@ namespace AddressBook.ViewModels
         void Initialize()
         {
             Config.Initialize();
+
+            People.AddRange(PeopleRepository.CreateTestData());
+        }
+
+        async void Load()
+        {
+            People.Clear();
+
+            var people = await PeopleRepository.Load();
+
+            People.AddRange(people);
+        }
+
+        async void Save()
+        {
+            await PeopleRepository.Save(People);
         }
 
         void Calculate()

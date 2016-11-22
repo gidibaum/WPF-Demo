@@ -52,20 +52,14 @@ namespace Base
             return (T)Convert.ChangeType(attr.Value, type);
         }
 
-        public static void AddElement(this XElement xml, string name, string value)
-        {
-            xml.Add(new XElement(name, value));
-        }
-
 
         public static void AddAttribute(this XElement xml, string name, object value)
         {
             if (value == null) return;
-            if (value is string)
-                if (string.IsNullOrEmpty(value as string)) return;
 
             var txt = value.ToString();
-            if (string.IsNullOrEmpty(txt)) return;
+
+            if (txt.IsEmpty()) return;
 
             xml.Add(new XAttribute(name, txt));
         }
