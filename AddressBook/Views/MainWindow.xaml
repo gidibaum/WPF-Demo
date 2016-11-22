@@ -1,0 +1,89 @@
+﻿<Window x:Class="AddressBook.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpf="clr-namespace:Base.WPF;assembly=Base.WPF"
+        ResizeMode="CanResizeWithGrip"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Base.WPF;component/Styles/Brushes.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Base.WPF;Component/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Base.WPF;Component/Styles/Icons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <wpf:BoolToVisibilityConverter x:Key="bool2Vis"/>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding ExitCommand}"/>
+    </Window.InputBindings>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Menu Padding="2">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Command="{Binding OpenFileCommand}"/>
+                <Separator/>
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
+            </MenuItem>
+
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Command="{Binding AboutCommand}"/>
+            </MenuItem>
+
+        </Menu>
+
+
+        <Menu Background="Transparent" Grid.Row="1">
+            <Menu.Resources>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Margin" Value="5,0,0,0"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="Width" Value="40"/>
+                    <Setter Property="Height" Value="40"/>
+                </Style>
+
+            </Menu.Resources>
+
+            <MenuItem 
+                Header="{StaticResource consoleFont}" FontSize="18"
+                ToolTip="Console" 
+                Command="{Binding ConsoleCommand}"/>
+
+            <MenuItem 
+                Header="{StaticResource calcFont}" FontSize="18"
+                ToolTip="Calculate" 
+                Command="{Binding CalcCommand}"/>
+
+            <MenuItem 
+                Header="{StaticResource exitFont}" FontSize="22"
+                ToolTip="Exit" 
+                Command="{Binding ExitCommand}"/>
+
+        </Menu>
+
+        <Button 
+            Content="Calc" 
+            Command="{Binding CalcCommand}" Margin="55,53,0,0" 
+            Grid.Row="2" HorizontalAlignment="Left" 
+            Width="75" Height="23" VerticalAlignment="Top" />
+
+        <StatusBar Grid.Row="3">
+            <TextBlock Text="Ver: " Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Config.Version}" VerticalAlignment="Center"/>
+        </StatusBar>
+
+    </Grid>
+</Window>

@@ -1,0 +1,94 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Geometry x:Key="DownArrow">M0,0 L1,0 0.5,1Z</Geometry>
+    <Geometry x:Key="UpArrow">M0,1 L1,1 0.5,0Z</Geometry>
+    <Geometry x:Key="RightArrow">M0,0 L1,0.5 0,1Z</Geometry>
+    <Geometry x:Key="LeftArrow">M0,0.5 L1,1 1,0Z</Geometry>
+    <Geometry x:Key="CloseX">M0,0 L1,1 M0,1 L1,0</Geometry>
+
+    <!--Windows 8 Dev Icons FontFamily="Segoe UI Symbol"-->
+
+    <sys:String x:Key="zeroFont">&#xE25F;</sys:String>
+    <sys:String x:Key="oneFont">&#xE260;</sys:String>
+    <sys:String x:Key="twoFont">&#xE261;</sys:String>
+    <sys:String x:Key="treeFont">&#xE262;</sys:String>
+    <sys:String x:Key="fourFont">&#xE263;</sys:String>
+    <sys:String x:Key="fiveFont">&#xE264;</sys:String>
+    <sys:String x:Key="sixFont">&#xE265;</sys:String>
+    <sys:String x:Key="sevenFont">&#xE266;</sys:String>
+    <sys:String x:Key="eightFont">&#xE267;</sys:String>
+    <sys:String x:Key="nineFont">&#xE268;</sys:String>
+
+    <sys:String x:Key="plusFont">&#xE109;</sys:String>
+    <sys:String x:Key="minusFont">&#xE108;</sys:String>
+    <sys:String x:Key="okFont">&#xE081;</sys:String>
+    <sys:String x:Key="gearFont">&#xE115;</sys:String>
+    <sys:String x:Key="copyFont">&#xE16F;</sys:String>
+    <sys:String x:Key="pasteFont">&#xE16D;</sys:String>
+    <sys:String x:Key="removeFont">&#xE107;</sys:String>
+    <sys:String x:Key="editFont">&#xE104;</sys:String>
+    <sys:String x:Key="xFont">&#xE0A4;</sys:String>
+    <sys:String x:Key="vFont">&#xE081;</sys:String>
+    <sys:String x:Key="filterFont">&#xE16E;</sys:String>
+    <sys:String x:Key="viewFont">&#xE1A3;</sys:String>
+    <sys:String x:Key="exportFont">&#xE159;</sys:String>
+    <sys:String x:Key="loadFont">&#xE0FB;</sys:String>
+    <sys:String x:Key="openFolderFont">&#xE197;</sys:String>
+
+    <sys:String x:Key="runFont">&#xE102;</sys:String>
+    <sys:String x:Key="pauseFont">&#xE103;</sys:String>
+    <sys:String x:Key="saveFont">&#xE105;</sys:String>
+
+    <sys:String x:Key="updateFont">&#xE0D8;</sys:String>
+    <sys:String x:Key="deleteFont">&#xE21C;</sys:String>
+
+    <sys:String x:Key="exitFont">&#xE07D;</sys:String>
+    <sys:String x:Key="reload1Font">&#xE0F2;</sys:String>
+    <sys:String x:Key="upLoadFont">&#xE1FE;</sys:String>
+    <sys:String x:Key="upFileFont">&#xE0FA;</sys:String>
+    <sys:String x:Key="downLoadFont">&#xE159;</sys:String>
+
+    <sys:String x:Key="exclamationFont">&#xE171;</sys:String>
+    <sys:String x:Key="questionFont">&#xE11B;</sys:String>
+    <sys:String x:Key="nextFont">&#xE095;</sys:String>
+    <sys:String x:Key="backFont">&#xE0C0;</sys:String>
+    <sys:String x:Key="wrenchFont">&#xE15E;</sys:String>
+    <sys:String x:Key="starFont">&#xE082;</sys:String>
+    <sys:String x:Key="reloadFont">&#xE117;</sys:String>
+    <sys:String x:Key="linkFont">&#xE167;</sys:String>
+    <sys:String x:Key="keyFont">&#xE192;</sys:String>
+    <sys:String x:Key="mailFont">&#xE135;</sys:String>
+    <sys:String x:Key="consoleFont">&#xE1E4;</sys:String>
+    <sys:String x:Key="postFont">&#xE184;</sys:String>
+    <sys:String x:Key="shopFont">&#xE14D;</sys:String>
+    <sys:String x:Key="earthFont">&#xE128;</sys:String>
+    <sys:String x:Key="userFont">&#xE13D;</sys:String>
+    <sys:String x:Key="usersFont">&#xE125;</sys:String>
+    <sys:String x:Key="libraryFont">&#xE1D3;</sys:String>
+    <sys:String x:Key="calcFont">&#xE1D0;</sys:String>
+
+
+    <sys:String x:Key="newFont">&#xE160;</sys:String>
+    <sys:String x:Key="testReportFont">&#x1f4dc;</sys:String>
+    <sys:String x:Key="lastTabFont">&#xE112;</sys:String>
+
+    <sys:String x:Key="upFont">&#xE110;</sys:String>
+    <sys:String x:Key="selectAllFont">&#xE1EF;</sys:String>
+    <sys:String x:Key="deselectAllFont">&#xE1EC;</sys:String>
+
+    <sys:String x:Key="preparingTestFont">&#xE115;</sys:String>
+    <sys:String x:Key="disabledTestFont">&#xE171;</sys:String>
+    <sys:String x:Key="waitingTestFont">&#xE103;</sys:String>
+    <sys:String x:Key="runningTestFont">&#xE117;</sys:String>
+    <sys:String x:Key="passTestFont">&#xE10B;</sys:String>
+    <sys:String x:Key="failTestFont">&#xE10A;</sys:String>
+
+    <sys:String x:Key="firstPageFont">&#xE100;</sys:String>
+    <sys:String x:Key="nextPageFont">&#xE102;</sys:String>
+    <sys:String x:Key="prevPageFont">&#xE102;</sys:String>
+
+
+</ResourceDictionary>

@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "Base\Base.csproj", "{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base.WPF", "Base.WPF\Base.WPF\Base.WPF.csproj", "{734BF4AC-94E0-4408-A51E-9C845AD99378}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base.Prism", "Base.Prism\Base.Prism\Base.Prism.csproj", "{93A3A732-7810-4F48-9626-9525EB679084}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{69528792-F3BB-4CB4-A50F-A0033221DA0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook", "AddressBook\AddressBook.csproj", "{FA42CA97-8C69-48FD-91E1-DF077146034A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49}.Debug|x86.Build.0 = Debug|Any CPU
+		{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49}.Release|x86.ActiveCfg = Release|Any CPU
+		{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49}.Release|x86.Build.0 = Release|Any CPU
+		{734BF4AC-94E0-4408-A51E-9C845AD99378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{734BF4AC-94E0-4408-A51E-9C845AD99378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{734BF4AC-94E0-4408-A51E-9C845AD99378}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{734BF4AC-94E0-4408-A51E-9C845AD99378}.Debug|x86.Build.0 = Debug|Any CPU
+		{734BF4AC-94E0-4408-A51E-9C845AD99378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{734BF4AC-94E0-4408-A51E-9C845AD99378}.Release|Any CPU.Build.0 = Release|Any CPU
+		{734BF4AC-94E0-4408-A51E-9C845AD99378}.Release|x86.ActiveCfg = Release|Any CPU
+		{734BF4AC-94E0-4408-A51E-9C845AD99378}.Release|x86.Build.0 = Release|Any CPU
+		{93A3A732-7810-4F48-9626-9525EB679084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93A3A732-7810-4F48-9626-9525EB679084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93A3A732-7810-4F48-9626-9525EB679084}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{93A3A732-7810-4F48-9626-9525EB679084}.Debug|x86.Build.0 = Debug|Any CPU
+		{93A3A732-7810-4F48-9626-9525EB679084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93A3A732-7810-4F48-9626-9525EB679084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93A3A732-7810-4F48-9626-9525EB679084}.Release|x86.ActiveCfg = Release|Any CPU
+		{93A3A732-7810-4F48-9626-9525EB679084}.Release|x86.Build.0 = Release|Any CPU
+		{FA42CA97-8C69-48FD-91E1-DF077146034A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA42CA97-8C69-48FD-91E1-DF077146034A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA42CA97-8C69-48FD-91E1-DF077146034A}.Debug|x86.ActiveCfg = Debug|x86
+		{FA42CA97-8C69-48FD-91E1-DF077146034A}.Debug|x86.Build.0 = Debug|x86
+		{FA42CA97-8C69-48FD-91E1-DF077146034A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA42CA97-8C69-48FD-91E1-DF077146034A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA42CA97-8C69-48FD-91E1-DF077146034A}.Release|x86.ActiveCfg = Release|x86
+		{FA42CA97-8C69-48FD-91E1-DF077146034A}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E7DDA1F-2F1C-43C2-B09F-19EFD3FB1F49} = {69528792-F3BB-4CB4-A50F-A0033221DA0E}
+		{734BF4AC-94E0-4408-A51E-9C845AD99378} = {69528792-F3BB-4CB4-A50F-A0033221DA0E}
+		{93A3A732-7810-4F48-9626-9525EB679084} = {69528792-F3BB-4CB4-A50F-A0033221DA0E}
+	EndGlobalSection
+EndGlobal
