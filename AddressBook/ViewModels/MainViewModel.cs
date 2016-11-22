@@ -11,7 +11,8 @@ using Microsoft.Win32;
 using AddressBook.Views;
 using AddressBook.Models;
 using AddressBook.Services;
-
+using System.Windows.Data;
+using System.ComponentModel;
 
 namespace AddressBook.ViewModels
 {
@@ -31,27 +32,35 @@ namespace AddressBook.ViewModels
         public Command LoadCommand { get; }
         public Command SaveCommand { get; }
 
+        public Command ClearFilterCommand { get; }
+
+
+        #region Property: FilterText
+
+        string _FilterText;
+
+        public string FilterText
+        {
+            get { return _FilterText; }
+            set
+            {
+                SetProperty(ref _FilterText, value);
+                PeopleView.Refresh();
+            }
+        }
+
+        #endregion
+
 
         public bool CanDelete => SelectedPerson != null;
         public bool CanEdit => SelectedPerson != null;
 
-        //#region Property: CanDelete
 
-        //bool _CanDelete;
-
-        //public bool CanDelete
-        //{
-        //    get { return _CanDelete; }
-        //    set
-        //    {
-        //        SetProperty(ref _CanDelete, value);
-        //        CommandManager.InvalidateRequerySuggested();
-        //    }
-        //}
-
-        //#endregion
 
         public ObservableCollection<Person> People { get; }
+
+
+        public ICollectionView PeopleView { get; }
 
 
         #region Property: SelectedPerson
@@ -65,7 +74,6 @@ namespace AddressBook.ViewModels
             {
                 SetProperty(ref _SelectedPerson, value);
                 CommandManager.InvalidateRequerySuggested();
-                //CanDelete = SelectedPerson != null;
             }
         }
 
@@ -93,6 +101,8 @@ namespace AddressBook.ViewModels
 
             SaveCommand = new Command(Save);
 
+            ClearFilterCommand = new Command(() => FilterText = "");
+
             CalcCommand = new Command(Calculate);
 
             OpenFileCommand = new Command
@@ -105,10 +115,21 @@ namespace AddressBook.ViewModels
 
             Config = new Configurator();
 
+            PeopleView = CollectionViewSource.GetDefaultView(People);
+
+            PeopleView.Filter = obj =>
+            {
+                if (FilterText.IsEmpty()) return true;
+
+                var p = obj as Person;
+                return p != null && p.FullName.IndexOf(FilterText, StringComparison.CurrentCultureIgnoreCase) >= 0;
+            };
+
+
             Initialize();
         }
 
-
+       
         void Initialize()
         {
             Config.Initialize();

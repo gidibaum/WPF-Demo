@@ -16,7 +16,6 @@ namespace AddressBook.Models
 
     public class Person : ObservableObject
     {
-
         #region Property: FirstName
 
         string _FirstName;
@@ -24,7 +23,11 @@ namespace AddressBook.Models
         public string FirstName
         {
             get { return _FirstName; }
-            set { SetProperty(ref _FirstName, value); }
+            set
+            {
+                SetProperty(ref _FirstName, value);
+                RaisePropertyChanged(nameof(FullName));
+            }
         }
 
         #endregion
@@ -36,7 +39,11 @@ namespace AddressBook.Models
         public string LastName
         {
             get { return _LastName; }
-            set { SetProperty(ref _LastName, value); }
+            set
+            {
+                SetProperty(ref _LastName, value);
+                RaisePropertyChanged(nameof(FullName));
+            }
         }
 
         #endregion
@@ -89,6 +96,8 @@ namespace AddressBook.Models
         }
 
         #endregion
+
+        public string FullName => $"{FirstName} {LastName}";
 
         public int Age { get; private set; }
 
