@@ -57,6 +57,7 @@
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\NegateBoolConverter.cs" />
     <Compile Include="Converters\TextToIntConverter.cs" />
+    <Compile Include="EnumSelector.cs" />
     <Compile Include="HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>

@@ -66,6 +66,7 @@ namespace AddressBook.Models
 
         public Address(XElement xml)
         {
+            if (xml == null) return;
             Street = xml.GetAttribute<string>(nameof(Street));
             Number = xml.GetAttribute<string>(nameof(Number));
             City = xml.GetAttribute<string>(nameof(City));

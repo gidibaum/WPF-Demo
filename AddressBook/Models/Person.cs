@@ -60,6 +60,7 @@ namespace AddressBook.Models
                     age--;
 
                 Age = age;
+                RaisePropertyChanged(nameof(Age));
             }
         }
 
@@ -93,7 +94,7 @@ namespace AddressBook.Models
 
         public Person()
         {
-            
+            Address = new Address();
         }
 
         public Person(XElement xml)
@@ -107,6 +108,8 @@ namespace AddressBook.Models
             var genderStr = xml.GetAttribute<string>(nameof(Gender));
             if (genderStr.IsNotEmpty())
                 Gender = (Gender)Enum.Parse(typeof(Gender), genderStr);
+
+            Address = new Address(xml.Element("Address"));
         }
 
         public XElement ToXml()
@@ -120,6 +123,15 @@ namespace AddressBook.Models
             xml.Add(Address?.ToXml());
 
             return xml;
+        }
+
+        public void Copy(Person src)
+        {
+            FirstName = src.FirstName;
+            LastName = src.LastName;
+            BirthDate = src.BirthDate;
+            Gender = src.Gender;
+            Address = src.Address.Clone();
         }
 
         public Person Clone() => new Person

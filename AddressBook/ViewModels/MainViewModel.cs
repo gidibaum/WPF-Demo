@@ -5,6 +5,7 @@ using System.IO;
 using Base;
 using Base.WPF;
 using System.Windows;
+using System.Windows.Input;
 using System.Xml.Linq;
 using Microsoft.Win32;
 using AddressBook.Views;
@@ -18,12 +19,37 @@ namespace AddressBook.ViewModels
     {
         public Command ExitCommand { get; }
         public Command ConsoleCommand { get; }
+
+        public Command AddCommand { get; }
+        public Command DeleteCommand { get; }
+        public Command EditCommand { get; }
+
+
         public Command CalcCommand { get; }
         public Command AboutCommand { get; }
         public Command OpenFileCommand { get; }
         public Command LoadCommand { get; }
         public Command SaveCommand { get; }
 
+
+        public bool CanDelete => SelectedPerson != null;
+        public bool CanEdit => SelectedPerson != null;
+
+        //#region Property: CanDelete
+
+        //bool _CanDelete;
+
+        //public bool CanDelete
+        //{
+        //    get { return _CanDelete; }
+        //    set
+        //    {
+        //        SetProperty(ref _CanDelete, value);
+        //        CommandManager.InvalidateRequerySuggested();
+        //    }
+        //}
+
+        //#endregion
 
         public ObservableCollection<Person> People { get; }
 
@@ -35,12 +61,17 @@ namespace AddressBook.ViewModels
         public Person SelectedPerson
         {
             get { return _SelectedPerson; }
-            set { SetProperty(ref _SelectedPerson, value); }
+            set
+            {
+                SetProperty(ref _SelectedPerson, value);
+                CommandManager.InvalidateRequerySuggested();
+                //CanDelete = SelectedPerson != null;
+            }
         }
 
         #endregion
 
-
+   
         public Configurator Config { get; protected set; }
 
 
@@ -51,6 +82,10 @@ namespace AddressBook.ViewModels
             ExitCommand = new Command(Exit);
 
             ConsoleCommand = new Command(p => WinConsole.Visible = !WinConsole.Visible);
+
+            AddCommand = new Command(Add);
+            DeleteCommand = new Command(Delete) {CanExecuteFunction = p=>CanDelete};
+            EditCommand = new Command(Edit) { CanExecuteFunction = p => CanEdit };
 
             AboutCommand = new Command(ShowAboutDialog);
 
@@ -93,6 +128,45 @@ namespace AddressBook.ViewModels
         async void Save()
         {
             await PeopleRepository.Save(People);
+        }
+
+        void Add()
+        {
+            var p = new Person();
+
+            var dlg = new PersonEditDialog
+            {
+                DataContext = p,
+                Owner = Application.Current.MainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                People.Add(p);
+            }
+        }
+
+        public void Edit()
+        {
+            if (SelectedPerson == null) return;
+            var p = SelectedPerson.Clone();
+            var dlg = new PersonEditDialog
+            {
+                DataContext = p,
+                Owner = Application.Current.MainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                SelectedPerson.Copy(p);
+            }
+        }
+
+        void Delete()
+        {            
+            People.Remove(SelectedPerson);
         }
 
         void Calculate()
