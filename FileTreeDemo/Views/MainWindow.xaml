@@ -1,0 +1,89 @@
+﻿<Window x:Class="FileTreeDemo.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:localViews="clr-namespace:FileTreeDemo.Views"
+        xmlns:viewModels="clr-namespace:FileTreeDemo.ViewModels"
+        xmlns:models="clr-namespace:FileTreeDemo.Models"
+        mc:Ignorable="d" Title="MainWindow" Height="350" Width="525">
+    
+    <Window.Resources>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="textStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        
+    </Window.Resources>
+    
+    <Window.DataContext>
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
+    
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding ExitCommand}"/>
+    </Window.InputBindings>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TreeView x:Name="treeView" Grid.Column="0" FontSize="18">
+            
+            <TreeView.Resources>
+
+                <HierarchicalDataTemplate DataType="{x:Type models:DirItem}" ItemsSource="{Binding Items}">
+                    <StackPanel Orientation="Horizontal" Margin="5,2">
+                        <TextBlock Text="{StaticResource openFolderFont}" FontFamily="Segoe UI Symbol" />
+                        <TextBlock Text="{Binding Name}" Foreground="Red" FontWeight="Bold"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+
+                <DataTemplate DataType="{x:Type models:FileItem}">
+                    <StackPanel Orientation="Horizontal" Margin="5,2">
+                        <TextBlock Text="{StaticResource newFont}" FontFamily="Segoe UI Symbol" />
+                        <TextBlock Text="{Binding Name}" Foreground="Blue" />
+                    </StackPanel>
+                </DataTemplate>
+            </TreeView.Resources>
+            
+            <TreeViewItem ItemsSource="{Binding Root.Items}" Header="{Binding Root.Name}"/>
+
+            <i:Interaction.Triggers>
+                <ei:PropertyChangedTrigger Binding="{Binding SelectedItem, ElementName=treeView}">
+                    <i:InvokeCommandAction Command="{Binding SelectItemCommand}" CommandParameter="{Binding SelectedItem, ElementName=treeView}"/>
+                </ei:PropertyChangedTrigger>
+            </i:Interaction.Triggers>
+        </TreeView>
+            
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+        <ContentControl Grid.Column="2" Content="{Binding SelectedItem}">
+            <ContentControl.Resources>
+
+                <DataTemplate DataType="{x:Type models:DirItem}">
+                    <StackPanel Background="#FFD3E7E4" >
+                        <TextBlock Text="Directory:" FontWeight="Bold" Margin="10,20" Style="{StaticResource textStyle}"/>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource textStyle}"/>
+                    </StackPanel>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type models:FileItem}">
+                    <StackPanel Background="#FFECDDDD"  >
+                        <TextBlock Text="File:" FontWeight="Bold" Style="{StaticResource textStyle}" Margin="10,20"/>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource textStyle}"/>
+                    </StackPanel>
+                </DataTemplate>
+
+            </ContentControl.Resources>
+        </ContentControl>
+        
+    </Grid>
+</Window>

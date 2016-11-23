@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimationDemo", "AnimationD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttachedDemo", "AttachedDemo\AttachedDemo.csproj", "{FFB28AD5-38BE-4ABE-BFE2-FD128F992244}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileTreeDemo", "FileTreeDemo\FileTreeDemo.csproj", "{4ED5AC23-B782-40E6-8E0E-9FEF523DBB15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,14 @@ Global
 		{FFB28AD5-38BE-4ABE-BFE2-FD128F992244}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFB28AD5-38BE-4ABE-BFE2-FD128F992244}.Release|x86.ActiveCfg = Release|Any CPU
 		{FFB28AD5-38BE-4ABE-BFE2-FD128F992244}.Release|x86.Build.0 = Release|Any CPU
+		{4ED5AC23-B782-40E6-8E0E-9FEF523DBB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ED5AC23-B782-40E6-8E0E-9FEF523DBB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ED5AC23-B782-40E6-8E0E-9FEF523DBB15}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4ED5AC23-B782-40E6-8E0E-9FEF523DBB15}.Debug|x86.Build.0 = Debug|Any CPU
+		{4ED5AC23-B782-40E6-8E0E-9FEF523DBB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ED5AC23-B782-40E6-8E0E-9FEF523DBB15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ED5AC23-B782-40E6-8E0E-9FEF523DBB15}.Release|x86.ActiveCfg = Release|Any CPU
+		{4ED5AC23-B782-40E6-8E0E-9FEF523DBB15}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
