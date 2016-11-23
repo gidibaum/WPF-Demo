@@ -3,6 +3,7 @@ using Microsoft.Practices.Unity;
 using System.Windows.Controls;
 using Base.Prism.Interfaces;
 using Base.Prism.Services;
+using Prism.Regions;
 
 
 namespace Base.Prism.Extensions
@@ -24,12 +25,12 @@ namespace Base.Prism.Extensions
                 new InjectionProperty("RegionName", regionName));
         }
 
-        //public static void RegisterTabNavigationService<T>(this IUnityContainer container, string regionName)
-        //{
-        //    container.RegisterType<ITabNavigationService<T>, TabNavigationService<T>>(
-        //        new ContainerControlledLifetimeManager(),
-        //        new InjectionProperty("RegionName", regionName));
-        //}
+        public static void RegisterTabNavigationService<T>(this IUnityContainer container, string regionName)
+        {
+            container.RegisterType<ITabNavigationService<T>, TabNavigationService<T>>(
+                new ContainerControlledLifetimeManager(),
+                new InjectionProperty("RegionName", regionName));
+        }
 
         public static void RegisterNavigationControl<T>(this IUnityContainer container) where T : Control
         {
@@ -39,6 +40,11 @@ namespace Base.Prism.Extensions
         public static void RegisterSingletonType<TFrom, TTo>(this IUnityContainer container) where TTo : TFrom
         {
             container.RegisterType<TFrom, TTo>(new ContainerControlledLifetimeManager());
+        }
+
+        public static IRegionManager RegisterNavigationControlWithRegion<T>(this IRegionManager manager, string region) where T : Control
+        {
+            return manager.RegisterViewWithRegion(region, typeof(T));
         }
 
     }

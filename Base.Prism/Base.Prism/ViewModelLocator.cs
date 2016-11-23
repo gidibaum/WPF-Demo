@@ -11,7 +11,7 @@ namespace Base.Prism
 {
     public static class ViewModelLocatorSetup
     {
-        static readonly List<string> ViewSuffixes = new List<string>
+        static readonly List<string> _ViewSuffixes = new List<string>
         {
             "Page",
             "Window",
@@ -34,7 +34,7 @@ namespace Base.Prism
 
             var viewModelName = fullViewName.Replace(".Views.", ".ViewModels.");
 
-            ViewSuffixes.ForEach(suffix =>
+            _ViewSuffixes.ForEach(suffix =>
             {
                 if (viewModelName.EndsWith(suffix))
                     viewModelName = viewModelName.Substring(0, viewModelName.Length - suffix.Length);

@@ -14,8 +14,11 @@ using Prism.Mvvm;
 using Base.Prism.Interfaces;
 using Base.Prism.Services;
 using Prism.Logging;
+using Prism.Regions;
 using PrismDemo.App.ViewModels;
 using PrismDemo.Common.Models;
+using PrismDemo.App.Models;
+using TabNavigationDemo.Views;
 
 namespace PrismDemo.App
 {
@@ -27,7 +30,7 @@ namespace PrismDemo.App
         {
             base.ConfigureModuleCatalog();
 
-            var catalog = (ModuleCatalog)this.ModuleCatalog;
+            var catalog = (ModuleCatalog) this.ModuleCatalog;
 
             catalog.AddModule(typeof(Module1Module));
 
@@ -38,22 +41,44 @@ namespace PrismDemo.App
         {
             base.ConfigureContainer();
 
+            ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(Container));
+
             Container.RegisterInstance(Logger as ILoggerService);
 
             ((ILoggerService) Logger).Config(Container);
 
 
-            Container.RegisterNavigationService<INavigationService<MainViews>, NavigationService<MainViews>>("MainRegion");
+            Container.RegisterNavigationService<INavigationService<MainViews>, NavigationService<MainViews>>(
+                "MainRegion");
             Container.RegisterNavigationControl<HomeView>();
 
-            //Container.RegisterSingletonType<IConfig, Config>();
-
-
             ViewModelLocatorSetup.Setup();
+
+
+            //TODO: Tabs are not correct!
+            Container.RegisterSingletonType<ITabNavigationService<TabViews>, TabNavigationService<TabViews>>();
+            Container.RegisterTabNavigationService<TabViews>("TabRegion");
+
+            var region = Container.Resolve<IRegionManager>();
+            region.RegisterNavigationControlWithRegion<Tab1Control>("TabRegion");
+            region.RegisterNavigationControlWithRegion<Tab2Control>("TabRegion");
+
         }
 
         protected override DependencyObject CreateShell() => Container.Resolve<MainWindow>();
 
         protected override void InitializeShell() => Application.Current.MainWindow.Show();
+
+        //protected override void InitializeModules()
+        //{
+        //    base.InitializeModules();
+
+
+        //    //var region = Container.Resolve<IRegionManager>();
+        //    //region.RegisterNavigationControlWithRegion<Tab1Control>("TabRegion");
+        //    //region.RegisterNavigationControlWithRegion<Tab2Control>("TabRegion");
+
+        //    //Application.Current.MainWindow.Show();
+        //}
     }
 }

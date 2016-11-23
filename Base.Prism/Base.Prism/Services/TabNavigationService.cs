@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using System.Windows.Controls;
 using Base.Prism.Interfaces;
-using Base.Prism.Services;
 
 
 namespace Base.Prism.Services
@@ -46,12 +45,13 @@ namespace Base.Prism.Services
             {
                 var viewName = item.ToString();
 
-                var view = region.Views.OfType<Control>().SingleOrDefault(o => o?.Tag?.ToString() == viewName);
+                //var view = region.Views.OfType<Control>().SingleOrDefault(o => o?.Tag?.ToString() == viewName);
+                var view = region.Views.OfType<Control>().SingleOrDefault(o => o?.GetType().Name == viewName);
 
                 if (view == null)
                 {
                     var ctrl = _Container.Resolve<Control>(viewName);
-                    //ctrl.Tag = viewName;
+                    ctrl.Tag = viewName;
                     region.Add(ctrl);
                 }
             }
