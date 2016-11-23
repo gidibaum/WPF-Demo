@@ -71,7 +71,7 @@ namespace Base.Prism.Services
             {
                 var str = new StringBuilder();
                 str.AppendFormat("{0}", DateTime.Now.ToShortDateString());
-                str.AppendFormat("; {0}", DateTime.Now.ToString("HH:mm:ss.fff"));
+                str.AppendFormat("; {0:HH:mm:ss.fff}", DateTime.Now);
                 str.AppendFormat("; {0}", module);
 
                 if (system)
@@ -90,6 +90,8 @@ namespace Base.Prism.Services
         void SafeLog(LogEntry logEntry)
         {
             //implement
+
+            Console.WriteLine(logEntry.Message);
         }
 
         void StartNewLog(string logFile)

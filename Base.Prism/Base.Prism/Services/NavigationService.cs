@@ -4,7 +4,6 @@ using Prism.Regions;
 using System;
 using System.Linq;
 using System.Windows.Controls;
-using Base;
 using Base.Prism.Interfaces;
 using Prism.Logging;
 
@@ -53,7 +52,7 @@ namespace Base.Prism.Services
                 region.Add(ctrl);
             }
 
-            region.NavigationService.RequestNavigate(new Uri(viewName, UriKind.Relative), (r) => NavigationCallback(r));
+            region.NavigationService.RequestNavigate(new Uri(viewName, UriKind.Relative), NavigationCallback);
         }
 
 
