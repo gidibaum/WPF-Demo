@@ -17,7 +17,7 @@ namespace Base
             return true;
         }
 
-        protected void RaisePropertyChanged(string propertyName)
+        protected void RaisePropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

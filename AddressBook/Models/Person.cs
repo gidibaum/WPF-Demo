@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.ComponentModel.DataAnnotations;
+using AddressBook.Properties;
 using Base;
+using Base.WPF.Validation;
 
 namespace AddressBook.Models
 {
@@ -14,12 +13,13 @@ namespace AddressBook.Models
         Female
     }
 
-    public class Person : ObservableObject
+    public class Person : ValidationObject
     {
         #region Property: FirstName
 
         string _FirstName;
 
+        [Required(AllowEmptyStrings = false)] [MinLength(3)]
         public string FirstName
         {
             get { return _FirstName; }
@@ -36,6 +36,10 @@ namespace AddressBook.Models
 
         string _LastName;
 
+
+        [Required(ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "Person_LastName_User_Name_is_required_")]
+        [MinLength(3, ErrorMessage = "More than 2 characters")]
+        [StringLength(50, ErrorMessage = "No more than 50 characters")]
         public string LastName
         {
             get { return _LastName; }
@@ -50,23 +54,31 @@ namespace AddressBook.Models
 
         #region Property: BirthDate
 
-        DateTime _BirthDate;
-
-        public DateTime BirthDate
+        DateTime? _BirthDate;
+        [DateOfBirth(MinAge = 18, MaxAge = 120, ErrorMessage = "Invalid Age")]
+        [Required]
+        public DateTime? BirthDate
         {
             get { return _BirthDate; }
             set
             {
                 SetProperty(ref _BirthDate, value);
 
-                var now = DateTime.Today;
+                if (_BirthDate == null)
+                {
+                    Age = 0;
+                }
+                else
+                {
+                    var now = DateTime.Today;
+                    var bday = _BirthDate.Value;
+                    var age = now.Year - bday.Year;
 
-                var age = now.Year - BirthDate.Year;
+                    if (now.Month < bday.Month || (now.Month == bday.Month && now.Day < bday.Day))
+                        age--;
 
-                if (now.Month < BirthDate.Month || (now.Month == BirthDate.Month && now.Day < BirthDate.Day))
-                    age--;
-
-                Age = age;
+                    Age = age;
+                }
                 RaisePropertyChanged(nameof(Age));
             }
         }
@@ -97,6 +109,39 @@ namespace AddressBook.Models
 
         #endregion
 
+
+        #region Property: Id
+
+        string _Id;
+
+        [Required(ErrorMessage = "This field is required.")]
+        [RegularExpression(@"^\d\d{3,15}$", ErrorMessage = "Please enter up to 15 digits for Id")]
+
+        public string Id
+        {
+            get { return _Id; }
+            set { SetProperty(ref _Id, value); }
+        }
+
+        #endregion
+
+
+
+        #region Property: Email
+
+        string _Email;
+
+        [Required(ErrorMessage = "Email Adress is required.")]
+        [EmailAddress]
+        public string Email
+        {
+            get { return _Email; }
+            set { SetProperty(ref _Email, value); }
+        }
+
+        #endregion
+
+
         public string FullName => $"{FirstName} {LastName}";
 
         public int Age { get; private set; }
@@ -104,12 +149,16 @@ namespace AddressBook.Models
         public Person()
         {
             Address = new Address();
+            RaisePropertyChanged();
         }
 
         public Person(XElement xml)
         {
             FirstName = xml.GetAttribute<string>(nameof(FirstName));
             LastName = xml.GetAttribute<string>(nameof(LastName));
+            Email = xml.GetAttribute<string>(nameof(Email));
+            Id = xml.GetAttribute<string>(nameof(Id));
+
             var dateStr = xml.GetAttribute<string>(nameof(BirthDate));
             if (dateStr.IsNotEmpty())
                 BirthDate = DateTime.Parse(dateStr);
@@ -127,7 +176,12 @@ namespace AddressBook.Models
 
             xml.AddAttribute(nameof(FirstName), FirstName);
             xml.AddAttribute(nameof(LastName), LastName);
-            xml.AddAttribute(nameof(BirthDate), BirthDate.ToShortDateString());
+            xml.AddAttribute(nameof(Email), Email);
+            xml.AddAttribute(nameof(Id), Id);
+
+            if (BirthDate != null)
+                xml.AddAttribute(nameof(BirthDate), BirthDate?.ToShortDateString());
+
             xml.AddAttribute(nameof(Gender), Gender);
             xml.Add(Address?.ToXml());
 
@@ -140,6 +194,8 @@ namespace AddressBook.Models
             LastName = src.LastName;
             BirthDate = src.BirthDate;
             Gender = src.Gender;
+            Email = src.Email;
+            Id = src.Id;
             Address = src.Address.Clone();
         }
 
@@ -149,6 +205,8 @@ namespace AddressBook.Models
             LastName = LastName,
             BirthDate = BirthDate,
             Gender = Gender,
+            Id = Id,
+            Email = Email,
             Address = Address.Clone()
         };
     }

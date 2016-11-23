@@ -30,36 +30,32 @@ namespace Base
             return Enumerable.Empty<string>();
         }
 
+
         #region Property: HasErrors
 
-        bool m_HasErrors;
+        bool _HasErrors;
+
         public bool HasErrors
         {
-            get { return m_HasErrors; }
-            set
-            {
-                m_HasErrors = value;
-                RaisePropertyChanged("HasErrors");
-            }
+            get { return _HasErrors; }
+            set { SetProperty(ref _HasErrors, value); }
         }
 
         #endregion
 
         #region Property: IsValid
 
-        bool m_IsValid = true;
+        bool _IsValid;
+
         public bool IsValid
         {
-            get { return m_IsValid; }
-            set
-            {
-                m_IsValid = value;
-                RaisePropertyChanged("IsValid");
-            }
+            get { return _IsValid; }
+            set { SetProperty(ref _IsValid, value); }
         }
 
         #endregion
 
+          
 
         public void AddError(string propertyName, IEnumerable<string> messages)
         {
