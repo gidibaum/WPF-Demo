@@ -1,0 +1,8 @@
+
+Edit.CommentSelection  Ctrl+Q
+Edit.UncommentSelection  Ctrl+Shift+Q
+Build.BuildSelection	Ctrl+B
+Edit.GotoDefinition		Num 2
+Edit.GotoDefinition		Num 2
+Edit.NextBookmarkInDocument	F2
+Edit.ToggleBookmark		Ctrl+F2

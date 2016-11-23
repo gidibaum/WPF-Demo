@@ -1,0 +1,6 @@
+
+EditProj
+Inline Color Picker
+Move Type To File
+VSColorOutput
+Extensibility Tools 
