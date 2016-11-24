@@ -1,13 +1,14 @@
 ﻿using Prism.Regions;
 using System;
+using Prism.Mvvm;
 
 namespace PrismDemo.App.ViewModels
 {
-    class TabBViewModel : INavigationAware
+    class Tab2ViewModel : BindableBase, INavigationAware
     {
-        //public string Header { get; } = "Tab2";
+        public string Header { get; } = "Tab2";
 
-        public TabBViewModel()
+        public Tab2ViewModel()
         {
 
         }
@@ -16,12 +17,12 @@ namespace PrismDemo.App.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            Console.WriteLine("Navigated From B");
+            Console.WriteLine("Navigated From Tab2");
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Console.WriteLine("Navigated To B");
+            Console.WriteLine("Navigated To Tab2");
         }
 
     }

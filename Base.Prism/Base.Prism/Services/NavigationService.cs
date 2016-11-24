@@ -31,28 +31,13 @@ namespace Base.Prism.Services
 
         #endregion
 
-        protected readonly IUnityContainer _Container;
         protected readonly IRegionManager _RegionManager;
         protected readonly ILoggerService _Logger;
 
 
         protected virtual void Navigate()
         {
-            var viewName = _View.ToString();
-
-            if (!_RegionManager.Regions.ContainsRegionWithName(RegionName)) return;
-
-
-            var region = _RegionManager.Regions[RegionName];
-            var view = region.Views.SingleOrDefault(o => o != null && o.GetType().Name == viewName);
-
-            if (view == null)
-            {
-                var ctrl = _Container.Resolve<Control>(viewName);
-                region.Add(ctrl);
-            }
-
-            region.NavigationService.RequestNavigate(new Uri(viewName, UriKind.Relative), NavigationCallback);
+            _RegionManager.RequestNavigate(RegionName, _View.ToString(), NavigationCallback);
         }
 
 
@@ -63,10 +48,8 @@ namespace Base.Prism.Services
 
         public NavigationService(
             IRegionManager regionManager,                        
-            IUnityContainer container,
             ILoggerService logger = null)            
         {
-            _Container = container;
             _RegionManager = regionManager;
             _Logger = logger;
         }

@@ -91,7 +91,7 @@ namespace Base.Prism.Services
             }
         }
 
-        public StateNavigationService(IRegionManager regionManager, IUnityContainer container) : base(regionManager, container)
+        public StateNavigationService(IRegionManager regionManager) : base(regionManager)
         {
             _CurrentState = _States.First();
             CanNext = _CurrentState.Next != null;

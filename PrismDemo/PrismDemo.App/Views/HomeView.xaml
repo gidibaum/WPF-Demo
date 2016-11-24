@@ -10,7 +10,7 @@
     
     <UserControl.Resources>
         <Style TargetType="{x:Type TabItem}" >
-            <Setter Property="Header" Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Header}"/>
+            <Setter Property="Header" Value="{Binding DataContext.Header}"/>
         </Style>
     </UserControl.Resources>
     
@@ -26,9 +26,13 @@
         <Button Grid.Row="0" Content="Experience1" HorizontalAlignment="Left" VerticalAlignment="Top" 
                 Width="80" Height="35" Margin="68,99,0,0" Command="{Binding NavigateExp1Command}" />
 
-        <TabControl 
-            prism:RegionManager.RegionName="TabRegion" SelectedItem="{Binding TabNavigation.SelectedTab}"
-            Grid.Row="1" Margin="10"/>
+        <TabControl Grid.Row="1" prism:RegionManager.RegionName="TabRegion" Margin="10"/>
+
+        <Button Grid.Row="0" Content="Tab1" HorizontalAlignment="Left" VerticalAlignment="Top" 
+            Width="40" Height="35" Margin="201,111,0,0" Command="{Binding NavigateTabCommand}" CommandParameter="Tab1Control" />
+        
+        <Button Grid.Row="0" Content="Tab2" HorizontalAlignment="Left" VerticalAlignment="Top" 
+            Width="40" Height="35" Margin="246,111,0,0" Command="{Binding NavigateTabCommand}"  CommandParameter="Tab2Control" />
 
     </Grid>
 </UserControl>
