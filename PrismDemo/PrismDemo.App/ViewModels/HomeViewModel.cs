@@ -11,8 +11,24 @@ namespace PrismDemo.App.ViewModels
     {
         public DelegateCommand NavigateExp1Command { get; }
         public DelegateCommand<string> NavigateTabCommand { get; }
+        public DelegateCommand<string> NavigateTab1Command { get; }
 
         public INavigationService<TabViews> TabNavigation { get; }
+
+
+
+        #region Property: SelectedIndex
+
+        int _SelectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return _SelectedIndex; }
+            set { SetProperty(ref _SelectedIndex, value); }
+        }
+
+        #endregion
+
 
         public HomeViewModel(
             INavigationService<MainViews> mainNav,
@@ -23,6 +39,10 @@ namespace PrismDemo.App.ViewModels
 
             NavigateTabCommand = new DelegateCommand<string>(t => tabNav.View = (TabViews)Enum.Parse(typeof(TabViews), t));
 
+            NavigateTab1Command = new DelegateCommand<string>(i => 
+            {
+                SelectedIndex = int.Parse(i);
+            });
         }
     }
 }

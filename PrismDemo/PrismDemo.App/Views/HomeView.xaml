@@ -26,13 +26,14 @@
         <Button Grid.Row="0" Content="Experience1" HorizontalAlignment="Left" VerticalAlignment="Top" 
                 Width="80" Height="35" Margin="68,99,0,0" Command="{Binding NavigateExp1Command}" />
 
-        <TabControl Grid.Row="1" prism:RegionManager.RegionName="TabRegion" Margin="10"/>
+        <TabControl Grid.Row="1" prism:RegionManager.RegionName="TabRegion" Margin="10" 
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"/>
 
         <Button Grid.Row="0" Content="Tab1" HorizontalAlignment="Left" VerticalAlignment="Top" 
-            Width="40" Height="35" Margin="201,111,0,0" Command="{Binding NavigateTabCommand}" CommandParameter="Tab1Control" />
+            Width="40" Height="35" Margin="201,111,0,0" Command="{Binding NavigateTab1Command}" CommandParameter="0" />
         
         <Button Grid.Row="0" Content="Tab2" HorizontalAlignment="Left" VerticalAlignment="Top" 
-            Width="40" Height="35" Margin="246,111,0,0" Command="{Binding NavigateTabCommand}"  CommandParameter="Tab2Control" />
+            Width="40" Height="35" Margin="246,111,0,0" Command="{Binding NavigateTab1Command}"  CommandParameter="1" />
 
     </Grid>
 </UserControl>

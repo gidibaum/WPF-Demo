@@ -40,6 +40,8 @@ namespace PrismDemo.App.ViewModels
                 _IsActive = value;
                 if (_IsActive)
                     Console.WriteLine($"{Header} is active");
+                else
+                    Console.WriteLine($"{Header} not active");
             }
         }
 

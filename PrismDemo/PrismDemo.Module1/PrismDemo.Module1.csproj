@@ -98,6 +98,9 @@
     </Compile>
     <Compile Include="Services\CounterService.cs" />
     <Compile Include="ViewModels\Experience1ViewModel.cs" />
+    <Compile Include="Views\ContentView.xaml.cs">
+      <DependentUpon>ContentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Experience1View.xaml.cs">
       <DependentUpon>Experience1View.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\ContentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Experience1View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
